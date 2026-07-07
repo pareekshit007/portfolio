@@ -1,0 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: #0f1419;
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(95, 212, 196, 0.07), transparent 42%),
+    radial-gradient(circle at 88% 18%, rgba(232, 163, 61, 0.07), transparent 42%),
+    radial-gradient(circle at 50% 100%, rgba(95, 212, 196, 0.04), transparent 50%);
+  background-attachment: fixed;
+  color: #e6e8eb;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0f1419;
+}
+::-webkit-scrollbar-thumb {
+  background: #232b36;
+  border-radius: 9999px;
+  border: 2px solid #0f1419;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2b3543;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #5fd4c4;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: #e8a33d;
+  color: #0f1419;
+}
+
+.file-eyebrow {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: #5fd4c4;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.file-eyebrow::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: #5fd4c4;
+  box-shadow: 0 0 0 3px rgba(95, 212, 196, 0.15);
+}
+
+.window-dots span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+}
+
+.code-block {
+  background: #0d1117;
+  border: 1px solid #232b36;
+  border-radius: 12px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  position: relative;
+}
+
+.code-block::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 13px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(95, 212, 196, 0.35), transparent 40%, rgba(232, 163, 61, 0.3));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.tok-key { color: #5fd4c4; }
+.tok-str { color: #e8a33d; }
+.tok-punc { color: #8b94a3; }
+.tok-num { color: #e8607d; }
+.tok-kw { color: #c792ea; }
+
+.cursor-blink::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 1.1em;
+  background: #e8a33d;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 1.1s step-start infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.tab {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.8rem;
+  transition: color 150ms ease, border-color 150ms ease;
+  border-bottom: 2px solid transparent;
+}
+
+.tab.active {
+  color: #e8a33d;
+  border-color: #e8a33d;
+}
+
+.tab:hover:not(.active) {
+  color: #e6e8eb;
+}
+
+.pill {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  border: 1px solid #232b36;
+  background: #1c232c;
+  color: #e6e8eb;
+  border-radius: 6px;
+  padding: 0.25rem 0.6rem;
+  transition: border-color 150ms ease, transform 150ms ease;
+}
+
+.pill:hover {
+  transform: translateY(-1px);
+}
+
+.btn-glow {
+  transition: transform 150ms ease, filter 150ms ease, box-shadow 150ms ease;
+}
+
+.btn-glow:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+  box-shadow: 0 8px 24px -8px rgba(232, 163, 61, 0.45);
+}
+
+.card {
+  background: #161b22;
+  border: 1px solid #232b36;
+  border-radius: 16px;
+  transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+}
+
+.card:hover {
+  border-color: #2b3543;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px -14px rgba(0, 0, 0, 0.55);
+}
+
+.underline-link {
+  text-decoration: underline;
+  text-decoration-color: rgba(95, 212, 196, 0.4);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 150ms ease, color 150ms ease;
+}
+
+.underline-link:hover {
+  text-decoration-color: #5fd4c4;
+  color: #5fd4c4;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 600ms ease, transform 600ms ease;
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
