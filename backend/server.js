@@ -8,9 +8,18 @@ import { connectDB } from "./config/db.js";
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Render (and most hosting platforms) sit behind a reverse proxy and set
+// X-Forwarded-For. Trusting the first proxy hop lets express-rate-limit
+// correctly identify each client by IP instead of throwing/misbehaving.
+app.set("trust proxy", 1);
+
 await connectDB();
 
-const allowedOrigins = (process.env.CORS_ORIGIN || "http://localhost:5173").split(",");
+const allowedOrigins = (process.env.CORS_ORIGIN || "http://localhost:5173")
+  .split(",")
+  .map((origin) => origin.trim());
+
+console.log("Allowed CORS origins:", allowedOrigins);
 
 app.use(cors({ origin: allowedOrigins }));
 app.use(express.json({ limit: "50kb" }));
